@@ -1,0 +1,61 @@
+i_have_a_name = False
+i_have_a_measure_height = False
+i_have_a_measure_weight = False
+i_have_a_height = False
+i_have_a_weight = False
+while not i_have_a_name:
+    name = input("what is your name : ")
+    if name != "":
+        i_have_a_name = True
+while not i_have_a_measure_height:
+    height_unit = input("what unit do you use to measure your height : ")
+    if height_unit != "":
+        i_have_a_measure_height = True
+if height_unit == "feet and inches" or height_unit == "foot and inch":
+    d = []
+    f = ""
+    i = ""
+    t = False
+    height_inch_foot = input("how tall r u in inches and foot[\' for foot and \" for inches] : ")
+    for c in height_inch_foot:
+        d.append(c)
+    for e in d:
+        if e != "'" and e != '"':
+            f += e
+        elif e == "'":
+            t = True
+        if t :
+            if e != "'" and e != '"':
+                i += e
+    len_i = len(i)
+    i = int(i)
+    f = int(f)
+    f = (f - i)/10 ** len_i
+    f = int(f)
+    height = ((i * 2.54) + (f*30.48))/100
+elif height_unit == "meters":
+    height = (input("how tall are u  : "))
+    try:
+        height = float(height)
+    except:
+        height = float(input("plz input ur height in meters :"))
+else :
+    height_unit = input("plz input a valid measuring unit [meters or feet and inches : ")
+while not i_have_a_measure_weight:
+    weight = float(input("how much do u weight : "))
+weight_unit = input("is your weight in kg or in lbs : ")
+if weight_unit == "lbs":
+    weight /= 2.205
+elif weight_unit == "kg":
+    weight = weight
+bmi = weight / (height ** 2)
+print(str(name), "'s bmi =", bmi)
+if bmi >= 25:
+    print("u r not healthy u need to lose weight")
+    print("the ideal IBM should be : 18.5<IBM<25")
+else:
+    if 18.5 < bmi < 25:
+        print("u r really healthy")
+    else:
+        print("u r not healthy u need to gain weight")
+        print("the ideal IBM should be : 18.5<IBM<25")
